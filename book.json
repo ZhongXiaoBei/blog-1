@@ -1,0 +1,12 @@
+{
+    "plugins": [
+        "ga",
+        "betterchinese"
+    ],
+    "pluginsConfig": {
+        "ga": {
+            "token": "UA-43760786-2",
+            "configuration": "auto"
+        }
+    }
+}
