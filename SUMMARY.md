@@ -5,6 +5,8 @@
    * Activity
        * [onSaveInstanceState() 方法分析](android/activity/onsaveinstancestate_method.md)
        * [启动模式](android/activity/launch_mode.md)
+	   * [ActivityGroup](android/activity_group.md)
+	   * [Android 基础之开机自动运行](android/start_application_when_boot_completed.md)
    * Fragment
        * [FragmentTransaction add 和 replace 区别](android/fragment/fragmenttransaction_add_and_replace.md)
        * [Android Fragment 和 FragmentManager 的代码分析](android/fragment/fragment_and_fragmentmanager_code.md)
@@ -16,6 +18,7 @@
    * [Intent](android/intent/summary.md)
        * [Standard Activity Actions](android/intent/standard_activity_actions.md) 
        * [Intent 的解析](android/intent/intent.md)
+	   * [Android IntentFilter 匹配规则](android/intent_filter_rules.md)
    * 进程和线程
        * [Android 进程间通信](android/process_and_thread/android_interprocess_communications.md)
        * [Linux 进程间通信](android/process_and_thread/linux_interprocess_communications.md)
@@ -42,6 +45,10 @@
 	   * [Hierarchy Viewer](android/debug_tools/hierarchy_viewer.md)
 	   * [dmtracedump](android/debug_tools/dmtracedump.md)
 	   * [Traceview](android/debug_tools/traceview.md)
+   * [HttpClient](android/http_client.md)
+   * [HttpURLConnection](android/http_url_connection.md)
+   * [adb](android/adb.md)
+       * [adb pm](android/android_adb_pm.md)
    * [Android 开发中遇到的坑](android/special_devices_bugs/summary.md)
        * [Android 软键盘弹起和消失事件](android/special_devices_bugs/callback_of_soft_keyboard_show_hidden_events.md)
        * [WebView 输入文本的时候，页面空白](android/special_devices_bugs/keyboard_hiding_edittext.md)
@@ -81,5 +88,6 @@
 * Linux
 	* [dnsmasq](linux/dnsmasq.md)
 	* [netstat](linux/netstat.md)
+	* [Ubuntu iotop](linux/iotop.md)
 	* [Ubuntu & Debian RAM Disk](linux/ubuntu_and_debian_ram_disk.md)
 
