@@ -1,5 +1,6 @@
 # Summary
-
+* [第一篇](README.md)
+* [Android Coding Standards](android/coding_standards.md)
 * Android
    * Activity
        * [onSaveInstanceState() 方法分析](android/activity/onsaveinstancestate_method.md)
@@ -76,9 +77,9 @@
        * [开闭原则](pattern_and_principle/design_principle/4_open_closed_principle.md)
        * [接口隔离原则](pattern_and_principle/design_principle/5_interface_segregation_principle.md)
        * [依赖倒置原则](pattern_and_principle/design_principle/6_dependence_inversion_principle.md)
+* [版本控制](version_controll/summary.md)
 * Linux
 	* [dnsmasq](linux/dnsmasq.md)
 	* [netstat](linux/netstat.md)
 	* [Ubuntu & Debian RAM Disk](linux/ubuntu_and_debian_ram_disk.md)
-* [AboutMe](aboutme.md)
 
