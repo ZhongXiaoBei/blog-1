@@ -2,8 +2,7 @@
     "plugins": [
         "ga",
         "betterchinese",
-        "sitemap",
-        "baidu"
+        "sitemap"
     ],
     "pluginsConfig": {
         "ga": {
