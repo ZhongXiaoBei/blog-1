@@ -2,7 +2,8 @@
     "plugins": [
         "ga",
         "betterchinese",
-        "sitemap"
+        "sitemap",
+        "tongji"
     ],
     "pluginsConfig": {
         "ga": {
