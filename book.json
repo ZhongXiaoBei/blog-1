@@ -1,7 +1,6 @@
 {
     "plugins": [
         "ga",
-        "betterchinese",
         "sitemap",
         "tongji"
     ],
