@@ -1,20 +1,11 @@
 {
     "plugins": [
         "ga",
-        "sitemap",
-        "tongji"
     ],
     "pluginsConfig": {
         "ga": {
             "token": "UA-43760786-2",
             "configuration": "auto"
-        },
-        "sitemap": {
-            "hostname": "http://blog.binkery.com/",
-            "language" : "false"
-        },
-        "tongji": {
-            "token": "fd51314443fc2f0859205bce4c561104"
-      }
+        }
     }
 }
