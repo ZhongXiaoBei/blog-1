@@ -10,7 +10,7 @@
             "configuration": "auto"
         },
         "sitemap": {
-            "hostname": "http://blog.binkery.com"
+            "hostname": "http://blog.binkery.com/"
         },
         "tongji": {
             "token": "fd51314443fc2f0859205bce4c561104"
