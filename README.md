@@ -8,4 +8,13 @@ gitbook 的展现形式还是很符合我的想法。所以我觉得，把我个
 
 总之，这里，以后，将成为我个人收集，整理和分享的主战场。
 
+2015.12.11 经过些许折腾，又搬回自己的博客空间了，用 PHP 实现了一个简单的 博客程序。没有后台，在本地写好文章后，FTP 到 PHP 服务器。同时也可以 push commit 到 github 上。
+
+github 地址 ： https://github.com/binkery/blog
+
+使用的第三方库：
+
+ * PHP markdown 解析，github 地址：https://github.com/michelf/php-markdown
+ * 代码高亮库，非常强大 http://alexgorbatchev.com/SyntaxHighlighter/
+
 
