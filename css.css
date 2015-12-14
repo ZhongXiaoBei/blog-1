@@ -23,7 +23,7 @@ a:hover{color:#428bca}
 .content{margin-left:300px;padding:20px;position:absolute;top: 0;left: 0;right: 0;bottom: 0;overflow-y: auto;}
 .content h1{font-size:2em;margin-bottom:16px;}
 .content p,.content ul,.content li{word-wrap:break-word;line-height:1.7;font-size:16px;margin-bottom:16px;}
-.content ul{-webkit-margin-before: 1em;
+.content ul,.content ol{-webkit-margin-before: 1em;
   -webkit-margin-after: 1em;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;

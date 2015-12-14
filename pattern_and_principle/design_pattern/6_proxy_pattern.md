@@ -19,5 +19,5 @@ Provide a surrogate or placeholder for another object to control access to it .
 强制代理就是要从真实角色获取到代理角色，不允许直接访问真实角色。代理角色由真实角色来指派。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>
 

@@ -11,4 +11,4 @@ Specify the kinds of objects to create using a prototypical instance , and creat
 clone 分深克隆和浅克隆，<http://www.binkery.com/archives/402.html> 。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>

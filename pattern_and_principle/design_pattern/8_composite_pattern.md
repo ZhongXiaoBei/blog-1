@@ -16,4 +16,4 @@
 
 其实不只在 Android 平台上，在其他平台上，比如 .Net ，HTML 等，都采用组合模式来设计界面的组件。
 
-[23种设计模式](http://www.binkery.com/archives/446.html)
+[23种设计模式](http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html)

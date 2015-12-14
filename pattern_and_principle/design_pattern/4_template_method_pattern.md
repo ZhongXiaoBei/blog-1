@@ -15,4 +15,4 @@ Android 里，Activity 就是模板方法的一个例子，当你启动一个 Ac
 
 除了Activity，还有四大组件的其他三个，Service，Provider，BroadcastReceiver 都是这样设计的，还有其他包括 AsyncTask，也是模版方法模式。这种设计模式大体上都有一个共同的特点，一般你不需要直接调用模版方法里的方法。
 
-[23种设计模式](http://www.binkery.com/archives/446.html)
+[23种设计模式](http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html)

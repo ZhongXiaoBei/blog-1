@@ -15,4 +15,4 @@ Separate the construction of a complex object from its representation so that th
 建造者模式关注的是零件类型和装配工艺顺序，与工厂方法模式还是有些区别的。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>

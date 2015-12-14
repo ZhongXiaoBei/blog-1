@@ -26,4 +26,4 @@ Provide an interface for creating families of related or dependent objects witho
 工厂模式的目的是解耦生产者和消费者，至于具体选择哪个就看需求了，即使选择好了，开发过程中重构着重构着就变了，也可能需求一变也就跟着变了，所以不要太纠结。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>

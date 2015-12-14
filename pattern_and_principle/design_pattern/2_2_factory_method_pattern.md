@@ -23,5 +23,5 @@ Define an interface for creating an object,but let subclass decide which class t
 在简单工厂模式中，一个工厂要负责生产 N 多种产品，但是产品实在太多了，一个工厂忙不过来，于是就多了一个工厂的接口，然后就可以有多个工厂的实现了。有的工厂负责生产面包，有的工厂生产牛奶。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>
 

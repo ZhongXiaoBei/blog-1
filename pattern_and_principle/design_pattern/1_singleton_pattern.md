@@ -78,7 +78,6 @@ Ensure a class has only one instance , and provide a global point of access to i
  - 静态内部类
 静态内部类是更先进的一种写法，据说在一些服务器容器的框架里，这样的写法是很常见的，
 
-
     public class Singleton {  
         private static class SingletonHolder {  
             private static final Singleton INSTANCE = new Singleton();  
@@ -92,7 +91,7 @@ Ensure a class has only one instance , and provide a global point of access to i
 各种写法都有优劣，没有绝对，所以要根据项目的需求来决定。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>
 
 ## 其他文章推荐
 参考了很多文章，他们写得都挺好，不像我东说一句西说一句，完全乱七八糟。

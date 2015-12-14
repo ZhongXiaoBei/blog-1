@@ -23,7 +23,7 @@
 缺点：不够灵活。每增加一个产品类，就需要修改对应的工厂类。就像新增了一个菜，餐厅就需要更换菜单一样。而且当产品足够多的时候，工厂的负担会变得很大，就像餐厅提供的菜太多了，以至于服务员都记不过来一样，你点一道菜，服务员都需要想半天才反应过来，那就拖垮了整个餐厅系统的运行了。
 
 23种设计模式：
-<http://www.binkery.com/archives/446.html>
+<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>
 
 ## 参考
 http://blog.163.com/huangbj_ecc/blog/static/1392926982012111705710604/

@@ -19,12 +19,10 @@
 		$file_path = 'README.md';
 	}else{
 		$index = stripos($_SERVER["REQUEST_URI"],'.html');
-		//echo '$index = ' . $index . '<br/>';;
 		if($index == -1){
 			$file_path = 'README.md';
 		}else{
 			$file_path = substr($_SERVER["REQUEST_URI"],0,$index);
-			//echo '$file_path = ' . $file_path . '<br/>';
 			if($file_path == '/index'){
 				$file_path = 'README.md';
 			}else{
@@ -49,10 +47,14 @@
 		}
 	}
 	
-	//echo $file_path;
 	$text = file_get_contents($file_path);
 	$content = Markdown::defaultTransform($text);
 	$description = mb_substr(strip_tags(excerpt($content)),0,250,'utf-8');
+	
+	// delete <code> tag 
+	$content = str_ireplace('<code>','',$content);
+	$content = str_ireplace('</code>','',$content);
+	
 	$content = str_ireplace('<pre','<pre class="brush: js;"',$content);
 ?>
 <!DOCTYPE HTML>
