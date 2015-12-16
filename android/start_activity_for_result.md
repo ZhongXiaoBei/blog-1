@@ -4,12 +4,12 @@
 
 咱们现在假设 A startActivityForResult B，A 称为发起方，B 称为响应方。那么代码应该满足以下几个要求：
 
-* 响应方不应该关心 requestCode，requestCode 由发起方自己管理。
+* 响应方不应该关心 requestCode，requestCode 由发起方自己管理。基本上，响应方不关心是谁发起的请求，对待任意一个请求，响应方给的结果应该是一致的。比如咱们在调起系统拍照一样，按照一个规则发送参数和接收参数，系统拍照不可能关心你是从哪发起的。
 
     也就是说，requestCode 可以是一个常量，但是这个常量的访问范围肯定是在发起方内，响应方不应该有这个 requestCode 的引用。
 
-* 响应方在 setResult 的时候，resultCode 一般只有 RESULT_OK 和 RESULT_CANCEL 两种
+* 响应方在 setResult 的时候，resultCode 一般只有 RESULT_OK 和 RESULT_CANCEL 两种，这两种是特殊意义的，一般情况下，不要随意增加自定义的 result code。
 
 	所以在 onActivityResult 的回调中，一般情况下只需要判断 resultCode
 
-* 在 onActivityResult 中，一般先判断 requestCode，根据 requestCode 交给不同的代码去处理。不要一上来就根据 resultCode == RESULT_CANCEL 就直接 return 了。职责要分清楚，谁发起的请求，谁来接收响应，不要出现一个王母娘娘，
+* 在 onActivityResult 中，一般先判断 requestCode，根据 requestCode 交给不同的代码去处理。不要一上来就根据 resultCode == RESULT_CANCEL 就直接 return 了。职责要分清楚，谁发起的请求，谁来接收响应。
