@@ -90,10 +90,14 @@
 	<div class="summary">
 		<h1><?=$SITE_NAME?></h1>
 		<?=$summary?>
+		<div id="summary_bottom_margin"></div>
 	</div>
 	<div class="content">
-		<?=$content?>
-	</div>
+		<article>
+			<?=$content?>
+		</article>
+		<footer></footer>
+		</div>
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
 </body>
 </html>

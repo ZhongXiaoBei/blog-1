@@ -1,6 +1,6 @@
 # 网络常用配置
 
-## windows 上的 dns 缓存
+## Windows 上的 dns 缓存
 
 显示已有缓存
 

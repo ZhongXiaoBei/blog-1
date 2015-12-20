@@ -20,12 +20,13 @@ a:hover{color:#428bca}
   white-space: nowrap;
   position: relative;
 }
+#summary_bottom_margin{height:30px;}
 .content{margin-left:300px;padding:20px;position:absolute;top: 0;left: 0;right: 0;bottom: 0;overflow-y: auto;}
-.content h1{font-size:2em;margin-bottom:16px;}
-.content p,.content ul,.content li{word-wrap:break-word;line-height:1.7;font-size:16px;margin-bottom:16px;}
-.content ul,.content ol{-webkit-margin-before: 1em;
+article h1{font-size:2em;margin-bottom:16px;}
+article p,article ul,article li{word-wrap:break-word;line-height:1.7;font-size:16px;margin-bottom:16px;}
+article ul,article ol{-webkit-margin-before: 1em;
   -webkit-margin-after: 1em;
   -webkit-margin-start: 0px;
   -webkit-margin-end: 0px;
   -webkit-padding-start: 40px;}
-.content pre{background: #f7f7f7;padding:16px;overflow:auto;font-size:85%;border-radius:3px;margin-bottom:16px;}
+article pre{background: #f7f7f7;padding:16px;overflow:auto;font-size:85%;border-radius:3px;margin-bottom:16px;}
