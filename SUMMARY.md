@@ -90,4 +90,7 @@
 	* [netstat](linux/netstat.md)
 	* [Ubuntu iotop](linux/iotop.md)
 	* [Ubuntu & Debian RAM Disk](linux/ubuntu_and_debian_ram_disk.md)
+* 其他
+    * [软件和工具](others/software_and_tools.md)
+	* [网络常用配置](linux/networks_config.md)
 
