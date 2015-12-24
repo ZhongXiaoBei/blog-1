@@ -35,7 +35,8 @@
    * Resource
        * [res/xml res/raw 和 assets 以及其他资源文件的区别](android/resource/android_xml_raw_assets.md)
        * [string.xml](android/resource/string_resources.md)
-   * TextView
+   * UI Component
+	   * [Toast](android/ui_component_toast.md)
        * [SpannableString 与 SpannableStringBuilder](android/textview/spannablestring_and_spannablestringbuilder.md)
    * [Touch](android/touch/summary.md)
        * [TouchDelegate 代码分析](android/touch/touch_delegate.md)
@@ -90,7 +91,13 @@
 	* [netstat](linux/netstat.md)
 	* [Ubuntu iotop](linux/iotop.md)
 	* [Ubuntu & Debian RAM Disk](linux/ubuntu_and_debian_ram_disk.md)
+* 计算机
+	* [计算机安全](computer/computer_security/computer_security_encryption.md)
+* 感悟
+    * [一个渠道号获取方法的优化](others/expression_a_channel_name_bug.md)
+	* [InputStream read() 的封装](others/expression_io_readlong.md)
 * 其他
     * [软件和工具](others/software_and_tools.md)
 	* [网络常用配置](linux/networks_config.md)
+	
 

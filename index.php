@@ -1,4 +1,5 @@
 <?php
+	$startTime = microtime(true);
 	$WEB_SITE = 'blog.binkery.com';
 	$SITE_NAME = 'Binkery 博客';
 	
@@ -65,6 +66,7 @@
 	<title><?=$title?> | <?=$SITE_NAME?></title>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<meta name="description" content="<?=$description?>">
+	<meta name="keywords" content="binkery,Android,计算机,技术,博客,分享,Java,Linux,项目,代码">
 	<meta name="generator" content="binkery.huang">
 	<meta name="author" content="BinHuang">
 	<meta name="HandheldFriendly" content="true"/>
@@ -96,7 +98,11 @@
 		<article>
 			<?=$content?>
 		</article>
-		<footer></footer>
+		<?php
+			$endTime = microtime(true);
+			$times = round($endTime - $startTime,3);
+		?>
+		<footer>Copyright Binkery | 2011-2015 | <?=$times?> seconds</footer>
 		</div>
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
 </body>
