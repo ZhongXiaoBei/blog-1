@@ -29,12 +29,12 @@
        * [Content Provider](android/provider/provider.md)
    * 权限
        * [Permissions](android/permission/all_permissions.md)
-   * Media
+  * 多媒体和资源
        * [Android 多媒体 API](android/media/android_media_api.md)
        * [MediaScannerConnection](android/media/media_scanner_connection.md)
-   * Resource
        * [res/xml res/raw 和 assets 以及其他资源文件的区别](android/resource/android_xml_raw_assets.md)
        * [string.xml](android/resource/string_resources.md)
+       * [内部存储和外部存储](android/storage_internal_and_external.md)
    * UI Component
 	   * [Toast](android/ui_component_toast.md)
        * [SpannableString 与 SpannableStringBuilder](android/textview/spannablestring_and_spannablestringbuilder.md)
@@ -49,6 +49,7 @@
    * [HttpClient](android/http_client.md)
    * [HttpURLConnection](android/http_url_connection.md)
    * [Android 虚拟机](android/vm_art.md)
+   * [消息推送](android/push_service.md)
    * [adb](android/adb.md)
        * [adb pm](android/android_adb_pm.md)
    * [Android 开发中遇到的坑](android/special_devices_bugs/summary.md)
@@ -95,6 +96,7 @@
 	* [Ubuntu & Debian RAM Disk](linux/ubuntu_and_debian_ram_disk.md)
 * 计算机
 	* [计算机安全](computer/computer_security/computer_security_encryption.md)
+	* [RESTful API](computer/restful_api.md)
 * 感悟
     * [一个渠道号获取方法的优化](others/expression_a_channel_name_bug.md)
 	* [InputStream read() 的封装](others/expression_io_readlong.md)

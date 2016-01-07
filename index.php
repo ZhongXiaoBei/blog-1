@@ -77,7 +77,7 @@
 	<script type="text/javascript" src="http://<?=$WEB_SITE?>/SyntaxHighlighter/shCore.js"></script>
 	<script type="text/javascript" src="http://<?=$WEB_SITE?>/SyntaxHighlighter/shBrushJScript.js"></script>
 	<link type="text/css" rel="stylesheet" href="http://<?=$WEB_SITE?>/SyntaxHighlighter/shCoreDefault.css"/>
-	
+	<script type="text/javascript" src="http://<?=$WEB_SITE?>/jquery.js"></script>
 	<script>
 		var _hmt = _hmt || [];
 		(function() {
@@ -86,6 +86,14 @@
 		  var s = document.getElementsByTagName("script")[0]; 
 		  s.parentNode.insertBefore(hm, s);
 		})();
+
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-43760786-2', 'auto');
+		ga('send', 'pageview');
 	</script>
 </head>
 <body>
@@ -106,4 +114,17 @@
 		</div>
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
 </body>
+
+        <script>
+                $(document).ready(function(){
+                        var offset = $.cookie('position');
+                        console.log("ready offset = " + offset);
+                        $(".summary").scrollTop(offset);
+                        $(".summary").scroll(function(){
+                                var offset = $(".summary").scrollTop();
+                                console.log("offset = " + offset);
+                                $.cookie('position',offset,{ expires: 7, path: '/' });
+                        });
+                });
+        </script>
 </html>

@@ -21,6 +21,8 @@ ART 通过下面的办法提高 GC 效率
  
 ## 开发和调试的效率提高 Development and debugging improvements
 
+### 更高效的 Trace
+
 一般开发者会使用 Traceview 工具来分析代码的执行效率。当 Traceview 工具 在收集信息的时候，每个方法的调用都需要 Dalvik 付出额外的工作，导致 app 的运行会变慢。而且就我个人的经验，经常会失败，因为虚拟机需要把每个方法调用的一些信息记录下来，最终写到 trace 文件里。但是在 ART 上，Traceview 并不会让 app 的运行变慢。
 
 ART 还提供了更多的调试选择。
@@ -30,6 +32,8 @@ ART 还提供了更多的调试选择。
  * Filter events (like breakpoint) for a specific instance.
 See the value returned by a method when it exits (using “method-exit” events).
  * Set field watchpoint to suspend the execution of a program when a specific field is accessed and/or modified.
+
+### 更详细的异常堆栈信息
  
 Improved diagnostic detail in exceptions and crash reports
 
