@@ -3,6 +3,7 @@
 	$WEB_SITE = 'blog.binkery.com';
 	$SITE_NAME = 'Binkery 博客';
 	
+	$isLogin = $_COOKIE['token'] == md5('binkeryhuangbin') ? true : false;
 	
 	spl_autoload_register(function($class){
 		require preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
@@ -59,7 +60,7 @@
 	$content = str_ireplace('<pre','<pre class="brush: js;"',$content);
 ?>
 <!DOCTYPE HTML>
-<html lang="en" >
+<html lang="zh" >
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -103,28 +104,68 @@
 		<div id="summary_bottom_margin"></div>
 	</div>
 	<div class="content">
-		<article>
-			<?=$content?>
-		</article>
+	<?php
+		if($isLogin){
+	?>
+		<div id="edit">
+			<div>编辑</div>
+		</div>
+		<div id="save">
+			<div>保存</div>
+		</div>
+	<?php 
+		}
+	?>
+		<article><?=$content?></article>
+		<textarea id="editor"></textarea>
 		<?php
 			$endTime = microtime(true);
 			$times = round($endTime - $startTime,3);
 		?>
 		<footer>Copyright Binkery | 2011-2015 | <?=$times?> seconds</footer>
 		</div>
+		
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
 </body>
 
-        <script>
-                $(document).ready(function(){
-                        var offset = $.cookie('position');
-                        console.log("ready offset = " + offset);
-                        $(".summary").scrollTop(offset);
-                        $(".summary").scroll(function(){
-                                var offset = $(".summary").scrollTop();
-                                console.log("offset = " + offset);
-                                $.cookie('position',offset,{ expires: 7, path: '/' });
-                        });
-                });
-        </script>
+<script>
+	$(document).ready(function(){
+			var offset = $.cookie('position');
+			console.log("ready offset = " + offset);
+			$(".summary").scrollTop(offset);
+			$(".summary").scroll(function(){
+					var offset = $(".summary").scrollTop();
+					console.log("offset = " + offset);
+					$.cookie('position',offset,{ expires: 7, path: '/' });
+			});
+	});
+	$("#save").hide();
+	$("#edit").click(function(){
+		$.post('/api.php',{
+			"method":"article",
+			"path": "<?=$file_path?>"
+		},function(data,stutus){
+			if(data.status == 200){
+				$("article").hide();
+				$("#editor").show();
+				$("#editor").val(data.text);
+				
+				$("#edit").hide();
+				$("#save").show();
+			}
+		},'json');
+		
+	});
+	$("#save").click(function(){
+		var text = $("#editor").val();
+		$.post('/api.php',{
+			"method":"save",
+			"path":"<?=$file_path?>",
+			"text":text
+		},function(data,status){
+			window.location.reload();
+		},"json");
+		
+	});
+</script>
 </html>

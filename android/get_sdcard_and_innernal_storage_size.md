@@ -5,7 +5,7 @@ Android 从某个版本开始（具体哪个忘了），会虚拟出一个 sdcar
 
 <!--more-->
 
-
+	StorageManager sm = (StorageManager) context.getSystemService(Context.STORAGE_SERVICE);
     String[] paths = (String[]) sm.getClass().getMethod("getVolumePaths", null).invoke(sm, null);
 
 这里获取到的目录，都是手机系统的厂商定制的，鬼知道这些目录会被叫什么名字，一般有 
@@ -13,7 +13,7 @@ Android 从某个版本开始（具体哪个忘了），会虚拟出一个 sdcar
 
 这个数组里，会有一个和 Environment.getExternalStorageDirectory() 相同的目录，这个是系统虚拟出来的。其他的就可能是咱们要的 sdcard 了，但不全是。所有，你需要根据这个目录 new 一个 File 出来，判断这个 File 是否存在，是否可读或可写，那些不存在并且不可读可写的，都是当前没有被挂载的，剩下的就是当前已经挂载的了。
 
-还有另外一个方法，在 stackoverflow 上看的，可以把 /mnt 目录下的子目录都列出来。这样也可以获取到 sdcard 的目录，链接在这：http://stackoverflow.com/questions/11281010/how-can-i-get-external-sd-card-path-for-android-4-0
+还有另外一个方法，在 stackoverflow 上看的，可以把 /mnt 目录下的子目录都列出来。这样也可以获取到 sdcard 的目录，链接在这：<http://stackoverflow.com/questions/11281010/how-can-i-get-external-sd-card-path-for-android-4-0>
 
     File storageDir = new File("/mnt/");
     if(storageDir.isDirectory()){

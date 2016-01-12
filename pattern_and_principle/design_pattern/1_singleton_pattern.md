@@ -12,6 +12,7 @@ Ensure a class has only one instance , and provide a global point of access to i
 确保一个类只有一个实例，而且自行实例化并向整个系统提供这个实例。
 
 ## 要素
+
 一个类是否是单例模式，需要满足下面几个要素。
 
  - 构造器私有化。目的是为了不让这个类以及这个类的内部类以外的所有类实例化这个类。
@@ -19,6 +20,7 @@ Ensure a class has only one instance , and provide a global point of access to i
  - 以自己实例为返回值的静态的公有的方法。暴露给外部调用的方法，通过这个方法，可以获得该类的一个实例化对象。
 
 ## 简单实现
+
 写了那么多些东西，可能表述不清楚，下面是代码：
 
     public class A{
@@ -35,6 +37,7 @@ Ensure a class has only one instance , and provide a global point of access to i
 这是一个很简单的代码实现。instance 是 A 类的一个实例，它会在 getInstance() 第一次被调用的时候去实例化，再次调用的时候，这个 instance 已经不为空了，就直接返回。
 
 ## 优缺点
+
 单例模式的优点：
 
 1. 确保对象唯一（废话）
@@ -106,8 +109,7 @@ Ensure a class has only one instance , and provide a global point of access to i
 
 各种写法都有优劣，没有绝对，所以要根据项目的需求来决定。
 
-23种设计模式：
-<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>
+23种设计模式：<http://blog.binkery.com/pattern_and_principle/design_pattern/summary.html>
 
 ## 其他文章推荐
 参考了很多文章，他们写得都挺好，不像我东说一句西说一句，完全乱七八糟。

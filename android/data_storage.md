@@ -1,14 +1,12 @@
 # Android 数据存储方式
 
 在 Android 开发过程中，数据的存储是必不可少的，而存储数据的方式也有很多种，各种存储方式都有它们的利弊，没有哪个是最好的，只有最合适的而已。下面列举了五种存储方式：
+
 * 使用SharedPreferences存储数据
 * 文件存储数据
 * SQLite数据库存储数据
 * 使用ContentProvider存储数据
 * 网络存储数据
-
-
-<!--more-->
 
 ## SharedPreferences
 
@@ -44,7 +42,7 @@ mode : Use 0 or MODE_PRIVATE for the default operation, MODE_WORLD_READABLE and 
 
     editor.commit();
 
-数据会被存储到 /data/data/\<package_name\>/shared_prefs 目录下。也就是，其实 SharedPreferences 是数据以 XML 的格式存储到文件里。
+数据会被存储到 /data/data/<package_name\>/shared_prefs 目录下。也就是，其实 SharedPreferences 是数据以 XML 的格式存储到文件里。
 
 优点就是轻量级，使用方便。
 缺点可能会比较多一些。
@@ -60,7 +58,7 @@ mode : Use 0 or MODE_PRIVATE for the default operation, MODE_WORLD_READABLE and 
 
     context.openFileOutput(name, mode);
 
-这种方式不需要任何权限，因为文件是存储在 /data/data/\<package_name\>/files/ 目录下的。是属于内部的存储（internal storage）。
+这种方式不需要任何权限，因为文件是存储在 /data/data/<package_name\>/files/ 目录下的。是属于内部的存储（internal storage）。
 
 Android 还提供一个缓存目录，你也可以往里面写一些文件，但要注意是"缓存"，也就是文件搁这里的话，系统会在它不高兴的时候把里面的文件删掉，而且你不能主动删。
 
@@ -68,7 +66,7 @@ Android 还提供一个缓存目录，你也可以往里面写一些文件，但
 
 > Note: you should not rely on the system deleting these files for you; you should always have a reasonable maximum, such as 1 MB, for the amount of space you consume with cache files, and prune those files when exceeding that space.
 
-这些目录下的文件是不需要申请权限的，但是一般来说，你是不能把比较大的文件搁里头的。比如你下载了个 mp3 文件，这个 mp3 文件应该被搁到 sdcard 上。什么？没有 sdcard ？谁说的，肯定有。[Android 获取 sdcard 和 内部存储的空间大小](http://www.binkery.com/archives/465.html) , Android 虚拟出了一个 sdcard 。
+这些目录下的文件是不需要申请权限的，但是一般来说，你是不能把比较大的文件搁里头的。比如你下载了个 mp3 文件，这个 mp3 文件应该被搁到 sdcard 上。什么？没有 sdcard ？谁说的，肯定有。[Android 获取 sdcard 和 内部存储的空间大小](http://blog.binkery.com/android/get_sdcard_and_innernal_storage_size.html) , Android 虚拟出了一个 sdcard 。
 
 对 sdcard 上的文件读写就需要 File 这个类了，然后你就可以根据的需求，获取各种各样的 IO 流了。
 
@@ -77,7 +75,9 @@ Android 还提供一个缓存目录，你也可以往里面写一些文件，但
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
 
-相比 /data/data/\<package_name\>/files/ ， sdcard 文件的访问权限就很松了，大家都可以访问。做不做加密就看你的需求了。
+相比 /data/data/<package_name\>/files/ ， sdcard 文件的访问权限就很松了，大家都可以访问。做不做加密就看你的需求了。
+
+[Android Internal Storage And External Storage](http://blog.binkery.com/android/storage_internal_and_external.html) 这篇文章介绍得更加清楚一些，关于Android 的存储空间。
 
 ## SQLite数据库存储数据
 
