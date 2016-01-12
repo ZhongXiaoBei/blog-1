@@ -7,6 +7,7 @@
        * [startActivityForResult](android/start_activity_for_result.md)
 	   * [ActivityGroup](android/activity_group.md)
 	   * [Android 基础之开机自动运行](android/start_application_when_boot_completed.md)
+       * [是否需要给每个　Activity　类提供　startActivity　方法](android/start_activity_method_for_each_activity_class.md)
    * Fragment
        * [FragmentTransaction add 和 replace 区别](android/fragment/fragmenttransaction_add_and_replace.md)
        * [Android Fragment 和 FragmentManager 的代码分析](android/fragment/fragment_and_fragmentmanager_code.md)
@@ -101,6 +102,7 @@
 	* [计算机安全](computer/computer_security/computer_security_encryption.md)
 	* [RESTful API](computer/restful_api.md)
 	* [mDNS](computer/mdns.md)
+    * [TCP](computer/networks_tcp.md)
 * 感悟
     * [一个渠道号获取方法的优化](others/expression_a_channel_name_bug.md)
 	* [InputStream read() 的封装](others/expression_io_readlong.md)
