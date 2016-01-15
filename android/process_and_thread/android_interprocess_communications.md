@@ -27,10 +27,6 @@ Content Provider 可以在不同的应用之间共享数据。
 
 广播虽然好用，但是有些局限性，通过 Intent 来携带数据，一般不允许携带复杂的数据，特别是一些大对象。另外，广播的频率也是一个问题，小喇叭嘴太欠的话，会遭人恨的。
 
-
-
-上面粗略的总结了Android 四大组件的进程间的通信，回头接着补充。
-
 ## Bound Services
 
 先来一段官方的解释：A bound service is the server in a client-server interface. A bound service allows components (such as activities) to bind to the service, send requests, receive responses, and even perform interprocess communication (IPC).
@@ -51,6 +47,8 @@ Content Provider 可以在不同的应用之间共享数据。
 
 ### Using a Messenger
 
+messenger 的翻译是报信者，送信者，信使。
+
 这种方式，需要你在 Service 里实现一个 Handler 的子类，跟普通的 Handler 一样一样的。然后还需要一个 Messenger 对象，在 onBind 方法，通过 Messenger.getBinder() 获取一个 Binder。
 
 Activity 通过 bindService 获取到 Binder 后，new Messenger(binder) ，Messenger 有个 send 方法，可以把一个 Message 对象发送出去，Service 的 Handler 就会收到这个 Message。跟咱们平常使用的 Handler 和 Message 的方式基本一样，只不过它是跨进程的。
@@ -59,15 +57,17 @@ Activity 通过 bindService 获取到 Binder 后，new Messenger(binder) ，Mess
 
 这个消息队列是在一个线程里去管理的，所以你的 Service 是线程安全的，你不需要额外的设计来保证线程安全。
 
+> This is the simplest way to perform interprocess communication(IPC), because the Messenger queues all requests into a single thread so that you don't have to design your service to be thread-safe.
+
 ### AIDL 
 
 下面就开始 AIDL 了，这是大家很期待的，但是又是 Android 官方特别不推荐的方式。
 
-AIDL (Android Interface Definition Language) performs all the work to decompose objects into primitives that the operating system can understand and marshall them across processes to perform IPC. The previous technique, using a Messenger, is actually based on AIDL as its underlying structure. As mentioned above, the Messenger creates a queue of all the client requests in a single thread, so the service receives requests one at a time. **If, however, you want your service to handle multiple requests simultaneously, then you can use AIDL directly.** In this case, your service **must** be capable of multi-threading and be built thread-safe.
+> AIDL (Android Interface Definition Language) performs all the work to decompose objects into primitives that the operating system can understand and marshall them across processes to perform IPC. The previous technique, using a Messenger, is actually based on AIDL as its underlying structure. As mentioned above, the Messenger creates a queue of all the client requests in a single thread, so the service receives requests one at a time. **If, however, you want your service to handle multiple requests simultaneously, then you can use AIDL directly.** In this case, your service **must** be capable of multi-threading and be built thread-safe.
 
 看粗体的字。然后再看这段话下面还有一段话：
 
-**Note**: Most applications **should not** use AIDL to create a bound service, because it may require multithreading capabilities and can result in a more complicated implementation. As such, AIDL is not suitable for most applications and this document does not discuss how to use it for your service. If you're certain that you need to use AIDL directly, see the AIDL document.
+> **Note**: Most applications **should not** use AIDL to create a bound service, because it may require multithreading capabilities and can result in a more complicated implementation. As such, AIDL is not suitable for most applications and this document does not discuss how to use it for your service. If you're certain that you need to use AIDL directly, see the AIDL document.
 
 这段话的粗体不是我整的，是文档上的。意思就是说大部分应用不需要 AIDL 的。主要的问题出在，如果你使用 AIDL，你必须处理好多线程，并且保证线程安全。
 

@@ -1,5 +1,5 @@
-*{padding:0;margin:0;border:0;font-size:16px;line-height:2;box-sizing: border-box;-webkit-tap-highlight-color: transparent;}
-html{font-size:16px; color: #333; letter-spacing: .2px;  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+*{padding:0;margin:0;border:0;font-size:16px;line-height:2;box-sizing: border-box;-webkit-tap-highlight-color: transparent;font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "å¾®è½¯é›…é»‘", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;}
+html{font-size:16px; color: #333; letter-spacing: .2px;}
 .clear{clear:both;}
 body{}
 a,a:active{text-decoration: none;color: #428bca;}
