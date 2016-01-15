@@ -24,6 +24,7 @@
        * [Android 进程间通信](android/process_and_thread/android_interprocess_communications.md)
        * [Linux 进程间通信](android/process_and_thread/linux_interprocess_communications.md)
        * [进程与应用的生命周期](android/process_and_thread/processes_and_application_life_cycle.md)
+       * [Android Loader](android/thread_loader.md)
    * Broadcast
        * [Android 广播](android/broadcast/android_broadcast.md)
    * Provider
@@ -48,9 +49,9 @@
 	   * [dmtracedump](android/debug_tools/dmtracedump.md)
 	   * [Traceview](android/debug_tools/traceview.md)
    * Android 网络
-		* [HttpClient](android/http_client.md)
-		* [HttpURLConnection](android/http_url_connection.md)
-		* [Android 移动网络类型](android/networks_type.md)
+    * [HttpClient](android/http_client.md)
+    * [HttpURLConnection](android/http_url_connection.md)
+	* [Android 移动网络类型](android/networks_type.md)
    * [Android 虚拟机](android/vm_art.md)
    * [消息推送](android/push_service.md)
    * [adb](android/adb.md)
@@ -101,7 +102,8 @@
 * 计算机
 	* [计算机安全](computer/computer_security/computer_security_encryption.md)
 	* [RESTful API](computer/restful_api.md)
-	* [mDNS](computer/mdns.md)
+    * [mDNS](computer/mdns.md)
+    * [HTTP](computer/http.md)
     * [TCP](computer/networks_tcp.md)
 * 感悟
     * [一个渠道号获取方法的优化](others/expression_a_channel_name_bug.md)
