@@ -5,17 +5,78 @@
 	
 	$isLogin = $_COOKIE['token'] == md5('binkeryhuangbin') ? true : false;
 	
+	function echoSummary(){
+		$handle = @fopen('SUMMARY.md', "r");
+		$result = '';
+		$index1 = 0;
+		$index2 = 0;
+		$index3 = 0;
+		$index4 = 0;
+		if ($handle) {
+			while (!feof($handle)) {
+				$line = fgets($handle);
+				$string = '<li>';
+				$level = 0;
+				$number = '';
+				if(stripos($line,'####') === 0){
+					$index4 += 1;
+					$number .= '<b class="level_4">' . $index1 . '.' . $index2 . '.' . $index3 . '.' . $index4 . '.';
+					$level = 4;
+				}else if(stripos($line,'###') === 0){
+					$index3 += 1;
+					$index4 = 0;
+					$number .= '<b class="level_3">' . $index1 . '.' . $index2 . '.' . $index3 . '.';
+					$level = 3;
+				}else if(stripos($line,'##') === 0){
+					$index2 += 1;
+					$index3 = 0;
+					$index4 = 0;
+					$number .=  '<b class="level_2">' . $index1 . '.' . $index2 . '.';
+					$level = 2;
+				}else if(stripos($line,'#') === 0){
+					$index1 += 1;
+					$index2 = 0;
+					$index3 = 0;
+					$index4 = 0;
+					$number .= '<b class="level_1">' .  $index1 . '.';
+					$level = 1;
+				}
+				$number .= '</b>';
+				if(stripos($line,'[') == FALSE){
+					$string .= $number . substr($line,$level);
+				}else{
+					$title1 = stripos($line,'[');
+					$title2 = stripos($line,']');
+					$link1 = stripos($line,'(');
+					$link2 = stripos($line,')');
+					$link = substr($line,$link1 + 1,$link2 - $link1 - 1);
+					if($link == 'README.md'){
+						$link = 'index.md';
+					}
+					$string .= '<a href="http://blog.binkery.com/'. str_replace('.md','.html',$link).'">' . $number . substr($line,$title1 + 1,$title2 - $title1 -1) . '</a>';
+				}
+				$string .= '</li>';
+				$result .= $string;
+			}
+			fclose($handle);
+		}
+		return $result;
+	}
+	
 	spl_autoload_register(function($class){
 		require preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
 	});
 	# Get Markdown class
 	use \Michelf\Markdown;
 	# Read file and pass content through the Markdown parser
-	$text = file_get_contents('SUMMARY.md');
-	$text = str_replace('.md','.html',$text);
-	$summary = Markdown::defaultTransform($text);
-	$summary = str_replace('href="','href="http://'.$WEB_SITE.'/',$summary);
-	$summary = str_replace('http://'.$WEB_SITE.'/README.html','http://'.$WEB_SITE.'/',$summary);
+	
+//	$text = file_get_contents('SUMMARY.md');
+//	$text = str_replace('.md','.html',$text);
+//	$summary = Markdown::defaultTransform($text);
+//	$summary = str_replace('href="','href="http://'.$WEB_SITE.'/',$summary);
+//	$summary = str_replace('http://'.$WEB_SITE.'/README.html','http://'.$WEB_SITE.'/',$summary);
+	
+	$summary = echoSummary();
 	
 	if(strlen($_SERVER["REQUEST_URI"]) == 1){
 		$file_path = 'README.md';
@@ -100,7 +161,9 @@
 <body>
 	<div class="summary">
 		<h1><?=$SITE_NAME?></h1>
+		<ul>
 		<?=$summary?>
+		</ul>
 		<div id="summary_bottom_margin"></div>
 	</div>
 	<div class="content">
