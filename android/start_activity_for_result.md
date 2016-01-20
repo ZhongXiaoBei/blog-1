@@ -10,7 +10,7 @@
 
     也就是说，requestCode 可以是一个常量，但是这个常量的访问范围肯定是在发起方内，响应方不应该有这个 requestCode 的引用。
 
-* 响应方在 setResult 的时候，resultCode 一般只有 RESULT_OK 和 RESULT_CANCEL 两种，这两种是特殊意义的，一般情况下，不要随意增加自定义的 result code。
+* 响应方在 setResult 的时候，resultCode 一般只有 RESULT\_OK 和 RESULT\_CANCEL 两种，这两种是特殊意义的，一般情况下，不要随意增加自定义的 result code。
 
 	所以在 onActivityResult 的回调中，一般情况下只需要判断 resultCode
 

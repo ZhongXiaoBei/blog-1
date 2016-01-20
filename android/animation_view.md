@@ -68,5 +68,104 @@ You can use the view animation system to perform tweened animation on Views.看�
 
 具体不同的动画 xml 元素属性和 Animation 子类的属性基本都是对应的，这里不一一描述了。原理知道了，剩下的就是查文档的事了。
 
+## Android 源码
+
+咱们可以看到，不管是是 XML 实现，还是 Java 实现，无非就是构造出一个 Animation 对象，然后调用 View.startAnimation() 方法。
+
+咱们前面说了，Animation 是一个抽象类，AnimationSet 和 AlphaAnimation 等都是它的子类。startAnimation() 方法调用了 setAnimation() 方法，调完后还调用了 invalidate() 方法。咱们这里先不讨论 invalidate() 方法怎么执行的，咱们回到 Animation 这个类里，咱们看到下面这个方法，这个方法就是动画的一个关键方法。
+
+    /**
+     * Gets the transformation to apply at a specified point in time. Implementations of this
+     * method should always replace the specified Transformation or document they are doing
+     * otherwise.
+     *
+     * @param currentTime Where we are in the animation. This is wall clock time.
+     * @param outTransformation A transformation object that is provided by the
+     *        caller and will be filled in by the animation.
+     * @return True if the animation is still running
+     */
+    public boolean getTransformation(long currentTime, Transformation outTransformation) {
+        if (mStartTime == -1) {
+            mStartTime = currentTime;
+        }
+
+        final long startOffset = getStartOffset();
+        final long duration = mDuration;
+        float normalizedTime;
+        if (duration != 0) {
+            normalizedTime = ((float) (currentTime - (mStartTime + startOffset))) /
+                    (float) duration;
+        } else {
+            // time is a step-change with a zero duration
+            normalizedTime = currentTime < mStartTime ? 0.0f : 1.0f;
+        }
+
+        final boolean expired = normalizedTime >= 1.0f;
+        mMore = !expired;
+
+        if (!mFillEnabled) normalizedTime = Math.max(Math.min(normalizedTime, 1.0f), 0.0f);
+
+        if ((normalizedTime >= 0.0f || mFillBefore) && (normalizedTime <= 1.0f || mFillAfter)) {
+            if (!mStarted) {
+                fireAnimationStart();
+                mStarted = true;
+                if (USE_CLOSEGUARD) {
+                    guard.open("cancel or detach or getTransformation");
+                }
+            }
+
+            if (mFillEnabled) normalizedTime = Math.max(Math.min(normalizedTime, 1.0f), 0.0f);
+
+            if (mCycleFlip) {
+                normalizedTime = 1.0f - normalizedTime;
+            }
+
+            final float interpolatedTime = mInterpolator.getInterpolation(normalizedTime);
+            applyTransformation(interpolatedTime, outTransformation);
+        }
+
+        if (expired) {
+            if (mRepeatCount == mRepeated) {
+                if (!mEnded) {
+                    mEnded = true;
+                    guard.close();
+                    fireAnimationEnd();
+                }
+            } else {
+                if (mRepeatCount > 0) {
+                    mRepeated++;
+                }
+
+                if (mRepeatMode == REVERSE) {
+                    mCycleFlip = !mCycleFlip;
+                }
+
+                mStartTime = -1;
+                mMore = true;
+
+                fireAnimationRepeat();
+            }
+        }
+
+        if (!mMore && mOneMoreTime) {
+            mOneMoreTime = false;
+            return true;
+        }
+
+        return mMore;
+    }
+
+其中调用了 applyTransformation() 方法，而这个方法在 Animation 里是一个空的方法，于是咱们去找它的子类看看，我找了 AplhaAnimation 这个类，方法的实现如下：
 
 
+    /**
+     * Changes the alpha property of the supplied {@link Transformation}
+     */
+    @Override
+    protected void applyTransformation(float interpolatedTime, Transformation t) {
+        final float alpha = mFromAlpha;
+        t.setAlpha(alpha + ((mToAlpha - alpha) * interpolatedTime));
+    }
+
+
+通过一个计算，给 Transformation 更改了以下属性。
