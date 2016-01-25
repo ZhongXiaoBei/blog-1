@@ -2,7 +2,7 @@
 
 在通过 context.getExternalCacheDir() 或者 context.getCacheDir() 类似的方法获取文件的时候，可能会报以下的错误：
 
-    ContextImpl: Failed to ensure directory: /storage/sdcard1/Android/data/com.binkery.allinone/cache
+> ContextImpl: Failed to ensure directory: /storage/sdcard1/Android/data/com.binkery.allinone/cache
 
 在 Stackoverflow 上找到的答案，基本可以忽略这个错误提示。
 ## Answer 1 :

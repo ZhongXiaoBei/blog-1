@@ -1,5 +1,13 @@
 # 权限系统
 
+对于 Android 权限，你需要知道了解的知识点有：
+
+* 沙盒模型
+* 申请权限
+* 普通权限和危险权限，已经权限组
+* 6.0 以上和早前版本的区别
+* 自定义权限以及通过自定义权限保护你的数据
+
 Android 是一个权限分离的操作系统（privilege-separated operating system)。每个运行在 Android 上的应用都拥有一个独特的系统标识（Linux user ID 和 group ID）。系统本身的组成部分也都有单独的标识，所以，每个应用和系统都是独立的。
 
 Android 系统提供了一个细粒度（finer-grained）的权限机制（permissiom mechanism)，以保证各个进场直接数据的访问的安全。
@@ -8,15 +16,15 @@ Android 系统提供了一个细粒度（finer-grained）的权限机制（permi
 
 默认的，一个应用没有任何权限，也不可能对用户，系统和其他应用带来任何不利影响（adversely impact)。包括读写用户的私有数据（private data)，比如通讯录，邮件；也没有权限读写其他应用的文件，访问网络，让设备保持唤醒状态等等。
 
-每个 Android 应用都运行在自己的一个沙盒（sandbox）里，应用需要显示（explicitly）的共享资源和数据。对外分享时，需要定义沙盒没有提供的权限，对外获取时，也需要向沙盒申请权限，沙盒会询问用户。
+沙盒：每个 Android 应用都运行在自己的一个沙盒（sandbox）里，应用需要显示（explicitly）的共享资源和数据。对外分享时，需要定义沙盒没有提供的权限，对外获取时，也需要chiyou向沙盒申请权限，沙盒会询问用户。
 
 不管是 Java ，native 还是 hybrid 编写的程序，都运行在沙盒里，所以，他们都有相同的安全级别。
 
 ## 应用签名 Application Signing 
 
-所有的 APK 文件都需要证书（certificate）签名，开发者都有证书的 private key 来签名应用，然后发布到各个市场。证书的作用就是区分应用的作者（application authors）。This allows the system to grant or deny applications access to signature-level permissions and to grant or deny an application's request to be given the same Linux identity as another application.
+所有的 APK 文件都需要证书（certificate）签名，证书的 private key 一般由开发者持有，然后发布到各个市场。证书的作用就是区分应用的作者（application authors）。This allows the system to grant or deny applications access to signature-level permissions and to grant or deny an application's request to be given the same Linux identity as another application.
 
-## 用户ID 和 文件访问 User IDs and File Access
+## 用户ID和文件访问 User IDs and File Access
 
 在安装的时候，Android 给应用的每个包（package）生成一个 user ID。这个 ID 伴随这应用的整个生命周期，从安装到卸载。在不同的设备，相同的 package 可能会被分配不同的 ID，但是，在一个设备上，不同的 package 的 UID 肯定是不同的。
 
@@ -63,6 +71,10 @@ Google 建议 targetSdkVersion 尽量使用最高的版本。通过 Build.VERSIO
 所有危险的权限都属于某个权限组。在 6.0 以上，对应危险权限会在运行的时候提示用户授权。对于两个属于同一个权限组里的两个权限，系统只会提示一次。比如 READ\_CONTACTS 和 WRITE\_CONTACTS 属于同一个权限组，如果用户授权了其中的一个，另外一个就不需要用户再次授权了。
 
 一个权限组可能包括普通权限和危险权限，系统只关系危险权限，对于普通权限，你可以忽略他们。
+
+### 两个特殊的权限 Special Permissions
+
+SYSTEM\_ALERT\_WINDOW 和 WRITE\_SETTINGS 两个权限是比较特殊的。不过呢，一般的 APP 是不需要申请这两个权限的。如果需要的话，需要在 manifest 文件中声明，然后还需要向用户发送一个 Intent ，获得用户的授权。系统会显示一个管理界面(showing a detailed management screen )给用户。
 
 ### 危险权限列表
 
