@@ -70,12 +70,6 @@
 	use \Michelf\Markdown;
 	# Read file and pass content through the Markdown parser
 	
-//	$text = file_get_contents('SUMMARY.md');
-//	$text = str_replace('.md','.html',$text);
-//	$summary = Markdown::defaultTransform($text);
-//	$summary = str_replace('href="','href="http://'.$WEB_SITE.'/',$summary);
-//	$summary = str_replace('http://'.$WEB_SITE.'/README.html','http://'.$WEB_SITE.'/',$summary);
-	
 	$summary = echoSummary();
 	
 	if(strlen($_SERVER["REQUEST_URI"]) == 1){

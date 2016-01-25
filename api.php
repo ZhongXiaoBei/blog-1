@@ -19,11 +19,7 @@ function save(){
 		return;
 	}
 	$path = $_POST['path'];
-	//echo $path . '\n';
-	//echo $_POST['text'] . '\n';
-//	$text = json_decode($_POST['text']);
 	$text = $_POST['text'];
-	//echo $text . '\n';
 	$count = file_put_contents($path,$text);
 	echo '{"status":200,"count":'.$count.'}';
 }
@@ -38,7 +34,6 @@ function getArticle(){
 	$text = file_get_contents($path);
 	$obj->status = 200;
 	$obj->text = $text;
-	
 	echo json_encode($obj);
 }
 
@@ -51,7 +46,6 @@ function login(){
 	}else{
 		echo '{"status":"404"}';
 	}
-	
 }
 
 ?>

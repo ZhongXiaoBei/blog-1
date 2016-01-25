@@ -31,6 +31,9 @@
 ### [Content Provider](android/provider/provider.md)
 ## 权限
 ### [Permissions](android/permission/all_permissions.md)
+### [Android 权限机制](android/permissions_system.md)
+### [Android 开发安全机制](android/permissions_security_tips.md)
+### [Android 权限保护等级](android/permission_protection_level.md)
 ## 多媒体和资源
 ### [Android 多媒体 API](android/media/android_media_api.md)
 ### [MediaScannerConnection](android/media/media_scanner_connection.md)
