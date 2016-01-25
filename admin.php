@@ -12,7 +12,7 @@
 		
 		#login{margin:0px;padding:0px 10px;background:#2d64b3;color:#efefef;font-size:16px;float:left;}
 	</style>
-	<script type="text/javascript" src="http://blog.binkery.com/jquery.js"></script>
+	<script type="text/javascript" src="http://blog.binkery.com/statics/jquery.js"></script>
 </head>
 <body>
 	<div class="panel">

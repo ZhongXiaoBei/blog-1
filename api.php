@@ -1,4 +1,6 @@
 <?php
+define('TOKEN','1fa350312a59cf1318ed696249346e3f');
+
 $method = $_REQUEST['method'];
 switch($method){
 	case 'login':
@@ -13,7 +15,7 @@ switch($method){
 }
 
 function save(){
-	$isLogin = $_COOKIE['token'] == md5('binkeryhuangbin') ? true : false;
+	$isLogin = $_COOKIE['token'] == TOKEN ? true : false;
 	if($isLogin == false){
 		echo '{"status":"400"}';
 		return;
@@ -25,7 +27,7 @@ function save(){
 }
 
 function getArticle(){
-	$isLogin = $_COOKIE['token'] == md5('binkeryhuangbin') ? true : false;
+	$isLogin = $_COOKIE['token'] == TOKEN ? true : false;
 	if($isLogin == false){
 		echo '{"status":"400"}';
 		return;
@@ -38,13 +40,12 @@ function getArticle(){
 }
 
 function login(){
-	$user = $_POST['user'];
-	$password = $_POST['password'];
-	if($user == 'binkery' && $password == 'huangbin'){
-		$md5 = md5($user.$password);
+    $md5 = md5($_POST['user'] . $_POST['password']);
+    $isRight = $md5 == TOKEN ? true : false;
+	if($isRight == true){
 		echo '{"status":"200","token":"'.$md5.'"}';
 	}else{
-		echo '{"status":"404"}';
+		echo '{"status":"404","user":"'.$_POST['user'].'","password":"'.$_POST['password'].'","md5":"'.$md5.'"}';
 	}
 }
 

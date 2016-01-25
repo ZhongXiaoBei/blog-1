@@ -2,11 +2,11 @@
 	$startTime = microtime(true);
 	$WEB_SITE = 'blog.binkery.com';
 	$SITE_NAME = 'Binkery 博客';
-	
-	$isLogin = $_COOKIE['token'] == md5('binkeryhuangbin') ? true : false;
+	define('TOKEN','1fa350312a59cf1318ed696249346e3f');
+	$isLogin = $_COOKIE['token'] == TOKEN ? true : false;
 	
 	function echoSummary(){
-		$handle = @fopen('SUMMARY.md', "r");
+		$handle = @fopen('articles/SUMMARY.md', "r");
 		$result = '';
 		$index1 = 0;
 		$index2 = 0;
@@ -64,7 +64,7 @@
 	}
 	
 	spl_autoload_register(function($class){
-		require preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
+		require 'statics/' . preg_replace('{\\\\|_(?!.*\\\\)}', DIRECTORY_SEPARATOR, ltrim($class, '\\')).'.php';
 	});
 	# Get Markdown class
 	use \Michelf\Markdown;
@@ -88,7 +88,7 @@
 		}
 	}
 	
-	$file_path = ltrim($file_path,'/');
+	$file_path = 'articles/' . ltrim($file_path,'/');
 	$myfile = fopen($file_path, "r");
 	$title = fgets($myfile);
 	$title = trim(trim($title,'#'));
@@ -129,11 +129,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
-	<link rel="stylesheet" href="http://<?=$WEB_SITE?>/css.css">
-	<script type="text/javascript" src="http://<?=$WEB_SITE?>/SyntaxHighlighter/shCore.js"></script>
-	<script type="text/javascript" src="http://<?=$WEB_SITE?>/SyntaxHighlighter/shBrushJScript.js"></script>
-	<link type="text/css" rel="stylesheet" href="http://<?=$WEB_SITE?>/SyntaxHighlighter/shCoreDefault.css"/>
-	<script type="text/javascript" src="http://<?=$WEB_SITE?>/jquery.js"></script>
+	<link rel="stylesheet" href="http://<?=$WEB_SITE?>/statics/css.css">
+	<script type="text/javascript" src="http://<?=$WEB_SITE?>/statics/SyntaxHighlighter/shCore.js"></script>
+	<script type="text/javascript" src="http://<?=$WEB_SITE?>/statics/SyntaxHighlighter/shBrushJScript.js"></script>
+	<link type="text/css" rel="stylesheet" href="http://<?=$WEB_SITE?>/statics/SyntaxHighlighter/shCoreDefault.css"/>
+	<script type="text/javascript" src="http://<?=$WEB_SITE?>/statics/jquery.js"></script>
 	<script>
 		var _hmt = _hmt || [];
 		(function() {
