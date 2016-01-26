@@ -9,11 +9,13 @@ Intent 是一个消息对象，你可以通过它向其他组件发送一个动�
 
 ## 使用场景
 Intent 有多种使用方式，但是主要有三个使用场景
+
 * [Start Activity](http://www.binkery.com/archives/111.html)
 * Start Service
 * To deliver a broadcast
 
-## [Intent Types](http://www.binkery.com/archives/418.html)
+## [Intent Types](http://blog.binkery.com/android/intent/intent.html)
+
 * Explicit intents 显示
 * Implicit intents　隐式
 

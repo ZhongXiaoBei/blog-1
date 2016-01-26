@@ -51,5 +51,5 @@ IntentService 主要完成：
  - 写一个构造方法。有参无参随意，重点是需要调用父类的构造方法 super("service name"); 传递一个字符串，用来当作工作线程的名字。
  - 实现 onHandleIntent(Intent intent) 方法。这里写你具体的业务逻辑代码。
 
-后续咱们来分析一下 IntentService 的源码，加深理解。
+后续咱们来分析一下 IntentService 的源码，加深理解。<http://blog.binkery.com/android/service/intent_service_code.html>
 

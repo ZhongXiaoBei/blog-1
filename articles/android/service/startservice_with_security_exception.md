@@ -4,21 +4,21 @@
 
 startService 的文档下有这样的描述：
 
-    This function will throw SecurityException if you do not have permission to start the given service.
+> This function will throw SecurityException if you do not have permission to start the given service.
 
 然后又在官方文档找到了如下的描述：
 
-    To ensure your app is secure, always use an explicit intent when starting or binding your Service and do not declare intent filters for the service.
+> To ensure your app is secure, always use an explicit intent when starting or binding your Service and do not declare intent filters for the service.
 
 大概意思是说为了确保安全，尽量使用显示的 intent 来startService 或者 bindService。而不要通过声明 intent filter 的方式。
 
 但是如果你非要这么做，也是可以的，下面的意思是说，如果你确定这个 service 只会被你自己的 app 启动，也就是在 service 的声明里添加 *andriod:exported="false"* 的方式，那么系统认为这样是安全的。
 
-    Additionally, you can ensure that your service is available to only your app by including the android:exported attribute and setting it to "false". This effectively stops other apps from starting your service, even when using an explicit intent.
+> Additionally, you can ensure that your service is available to only your app by including the android:exported attribute and setting it to "false". This effectively stops other apps from starting your service, even when using an explicit intent.
 
 那么，为什么会有这样的限制呢？
 
-首先一开始设计的时候，Activity 和 Service 都有两种启动方式，显式和隐式。关于显式和隐式请戳这里 ： <http://www.binkery.com/archives/418.html/>
+首先一开始设计的时候，Activity 和 Service 都有两种启动方式，显式和隐式。关于显式和隐式请戳这里 ： <http://blog.binkery.com/android/intent/intent.html>
 
 显式就不说了，就是制定明确的 packagename + classname ，可以确保在一个系统内，肯定是唯一的。
 

@@ -1,5 +1,7 @@
 # netstat
 
+netstat 应该就是 net status 的缩写了，在 linux 系统上，可以用来查看网络状态。
+
 ## 简介
 Netstat 命令用于显示各种网络相关信息，如网络连接，路由表，接口状态 (Interface Statistics)，masquerade 连接，多播成员 (Multicast Memberships) 等等。
 

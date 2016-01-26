@@ -1,5 +1,8 @@
 # Android Coding Standards 
 
+这里总结我自己在编程中的一些习惯，当然，个人习惯最终是要服从于团队规范的。
+
+0. 个人习惯服从于团队规范
 1. 成员变量以 m 开头，表示成员变量 member
 2. 常量：只要是 static final 的，就必须全大写；只要不是 static final 的，必须不能全大写
 3. 一般 View 的成员变量在变量名的最后添加一个 View / Layout / Bar 

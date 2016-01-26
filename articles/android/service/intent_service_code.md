@@ -1,6 +1,6 @@
 # Android 基础之 IntentService 源码
 
-*IntentService* 位于 android.app 包下面，是 Service 的一个子类。用来帮助你在后台使用一个线程来执行一些来自主线程的任务。<http://www.binkery.com/archives/438.html> 这里有对 IntentService 的一些分析，下面是 IntentService 的源码，看完源码就更明白了。我去掉了源码里带的注释。
+*IntentService* 位于 android.app 包下面，是 Service 的一个子类。用来帮助你在后台使用一个线程来执行一些来自主线程的任务。<http://blog.binkery.com/android/service/intent_service.html> 这里有对 IntentService 的一些分析，下面是 IntentService 的源码，看完源码就更明白了。我去掉了源码里带的注释。
 
 
 <!--more-->
