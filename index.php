@@ -47,8 +47,8 @@
 				}else{
 					$title1 = stripos($line,'[');
 					$title2 = stripos($line,']');
-					$link1 = stripos($line,'(');
-					$link2 = stripos($line,')');
+					$link1 = stripos($line,'(',$title2);
+					$link2 = stripos($line,')',$link1);
 					$link = substr($line,$link1 + 1,$link2 - $link1 - 1);
 					if($link == 'README.md'){
 						$link = 'index.md';
