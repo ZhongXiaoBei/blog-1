@@ -168,4 +168,4 @@ You can use the view animation system to perform tweened animation on Views.看�
     }
 
 
-通过一个计算，给 Transformation 更改了以下属性。
+通过一个计算，给 Transformation 更改了以下属性。在 View 的 draw(Canvas canvas) 方法里，在往 Canvas 上渲染的时候，会根据 Animation 对象和 Transformation 对象的相关的值，把当前的 View 渲染到 Canvas 上。所以，咱们可以看出，视图动画，View 本身的属性没有变化，变化的是渲染的时候。

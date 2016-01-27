@@ -10,7 +10,7 @@ The property animation system is a robust framework that allows you to animate a
 
 ### Time interpolation 时间差值
 
-你可以定义属性的变化的时间差值，也就是说在 duration 的周期内，一个属性数值的变化不一定需要是匀速的。
+你可以定义属性的变化的时间差值，也就是说在 duration 的周期内，一个属性数值的变化不一定需要是匀速的。在一个固定的单位时间，对象的属性总是有相同的变化量，这种称为线性变化，在物理上，称为匀速运动。但是这样的动画会显得很生硬，如果配合各种差值器，动画效果会显得更加的自然，比如匀加速运动，对象的运动慢慢变快。但是到达终点的时候突然停住也好像不是自然，那么咱们可以先匀加速，到达中点的时候，匀减速，这样就可以慢慢的靠近终点了。
 
 ### Repeat count and behavior 重复次数和行为
 
@@ -70,15 +70,17 @@ foo 是一个对象，alpha 是它的属性。其实 foo 这个对象有没有 a
 Animator 是属性动画的基类。它有这么几个子类：ValueAnimator,ObjectAnimator,AnimatorSet。前两个刚才说了，AnimatorSet 也可以猜出来了，就是一个集合的意思，也就是说，动画可以很多个，同时修改一个对象的多个属性。或者同时修改多个对象的多个属性。
 
 
-## Interpolators
+## 差值器 Interpolators
+
+差值器的计算结果是，从 0 毫秒到一次动画周期内，各个时间点完成了从起点到终点的百分比。
 
 An interpolator define how specific values in an animation are calculated as a function of time. 差值器其实提供的是一个算法，一个变化算法，比如线性差值器，数字的变化随着时间的变化是线性的，等比例的，匀速的。
 
 Android 在 android.view.animation 包下提供了好多些已经实现的差值器，基本够用了，如果不够用，你还可以继承 TimeInterpolator 自己实现一个。自己实现只需要重写一个方法 getInterpolation(float input)，input 的取值将在 0 到 1 之间。
 
-## TypeEvaluator
+## 估值器 TypeEvaluator
 
-估值器。刚才说的是差值器，Interpolators 计算的是一个变化的速率问题，并没有计算出一个最终的结果。TypeEvaluator 就是干这件事的。咱们以 IntEvaluator 为例子：
+估值器，根据差值器输出的百分比，以及起点和终点，计算出当前的位置。TypeEvaluator 就是干这件事的。咱们以 IntEvaluator 为例子：
 
     public class IntEvaluator implements TypeEvaluator<Integer>{
         
@@ -90,6 +92,8 @@ Android 在 android.view.animation 包下提供了好多些已经实现的差值
 
 这里，float fraction 的值，就是差值器输出的值，start 和 end 就是动画开始的数值和目标的数值。
 
-是不是有点重复？确实有点重复，但是，这样的设计更加通用，我估计你在理解这个属性动画的时候，满脑子应该就是在模拟一个物体的位移，从一个位置移动到另外一个位置，然后移动的速度从匀速到各种变速，这样去理解。但是属性动画要实现的不仅仅是位移，它可以修改任何属性，属性的类型也不仅仅限制在数值类型。
+是不是有点重复？确实有点重复，一个线性的差值器和一个加速的估值器，得到的效果跟一个加速的差值器和一个线性的估值器是一样的。前者是符合设计的，后者虽然也达到了相同的效果，但是属于不合理的实现。差值器和估值器的设计，让这个动画系统更加通用，我估计你在理解这个属性动画的时候，满脑子应该就是在模拟一个物体的位移，从一个位置移动到另外一个位置，然后移动的速度从匀速到各种变速，这样去理解。但是属性动画要实现的不仅仅是位移，它可以修改任何属性，属性的类型也不仅仅限制在数值类型，更不仅仅是 int 类型。
 
+## 属性动画和视图动画的区别
 
+帧动画是发生在渲染背景的时候，视图动画是发生在渲染当前这个 View 的时候，属性动画改变的是对象的属性，也就是 View 的属性，这样会引起父级容器重新计算，重新渲染当前 View。这是他们最直观的区别。

@@ -1,17 +1,22 @@
 # SpannableString 与 SpannableStringBuilder
 
+SpannableString 和 SpannableStringBuilder 让 TextView 可以展示富文本。SpannableString 和 SpannableStringBuilder 分别对应 String 和 StringBuilder 。
+
 在项目中可能会碰见这种需求：产品给一个文案，一般来说用一个 TextView 就搞定了，但是如果文案中有几个字符需要特殊处理，比如改变颜色，变成粗体。那么好像是很麻烦，其实 TextView 以及能处理这种需求了，只是不能简单的使用 String 而已。
 
 SpannableString 与 SpannableStringBuilder 是处理这种需求的一种方式。
 
-首先，TextView.setText(CharSequence text) ，传的不是 String，而是 String 的父类 CharSequence,CharSequence 是一个接口，String 是它最常见的子类，咱们用习惯了，不要以为 setText 接受的参数是　String　类型。
+首先，TextView.setText(CharSequence text) ，传的不是 String，而是 String 的父类 CharSequence，CharSequence 是一个接口，String 是它最常见的子类，咱们用习惯了，不要以为 setText 接受的参数是　String　类型。
 
 咱们看看　String，StringBuilder，SpannableString　和　SpannableStringBuilder　的定义
 
-    public final class String implements Serializable, Comparable<String>, CharSequence
-    public final class StringBuilder extends AbstractStringBuilder implements　Appendable, CharSequence, Serializable
-    public class SpannableString　extends SpannableStringInternal　implements CharSequence, GetChars, Spannable
-    public class SpannableStringBuilder implements CharSequence, GetChars, Spannable, Editable,Appendable, GraphicsOperations
+    public final class String implements Serializable, Comparable<String>, CharSequence{}
+
+    public final class StringBuilder extends AbstractStringBuilder implements　Appendable, CharSequence, Serializable{}
+
+    public class SpannableString　extends SpannableStringInternal　implements CharSequence, GetChars, Spannable{}
+
+    public class SpannableStringBuilder implements CharSequence, GetChars, Spannable, Editable,Appendable, GraphicsOperations{}
 
 首先可以肯定的是他们都是 CharSequence 的子类，实现类。SpannableString 和 SpannableStringBuilder 都实现了一个叫 Spannable 的接口。SpannableStringBuilder 和 StringBuilder 类似，都实现了 Appendable 接口，也就是 SpannableStringBuilder 可以像 StringBuilder 一样，使用 append() 方法。
 
@@ -20,10 +25,15 @@ SpannableString 与 SpannableStringBuilder 是处理这种需求的一种方式�
     public void setSpan(Object what, int start, int end, int flags);
 
 参数说明：
+
 what ： 是一个样式，下面具体说明
+
 start ： 开始的位置
+
 end ： 结束的位置
+
 flags ： 标志，取值有以下几种
+
 
     Spannable.SPAN_EXCLUSIVE_EXCLUSIVE ：前后都不包括 = ()
     Spannable.SPAN_EXCLUSIVE_INCLUSIVE ：前面不包括，后面包括 = (]
