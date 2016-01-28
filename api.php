@@ -33,7 +33,10 @@ function getArticle(){
 		return;
 	}
 	$path = $_POST['path'];
-	$text = file_get_contents($path);
+	$text = @file_get_contents($path);
+    if($text == FALSE){
+        $text = '';
+    }
 	$obj->status = 200;
 	$obj->text = $text;
 	echo json_encode($obj);

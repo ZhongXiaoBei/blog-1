@@ -89,10 +89,15 @@
 	}
 	
 	$file_path = 'articles/' . ltrim($file_path,'/');
-	$myfile = fopen($file_path, "r");
-	$title = fgets($myfile);
-	$title = trim(trim($title,'#'));
-	fclose($myfile);
+	$myfile = @fopen($file_path, "r");
+    if($myfile == FALSE){
+        $title = 'Binkery Blog';       
+    }else{
+	    $title = fgets($myfile);
+	    $title = trim(trim($title,'#'));
+	    fclose($myfile);
+    }
+
 	
 	function excerpt($post_content){
 		$theEndPosition=strrpos($post_content, '<!–more–>');
@@ -104,7 +109,10 @@
 		}
 	}
 	
-	$text = file_get_contents($file_path);
+	$text = @file_get_contents($file_path);
+    if($text == FALSE){
+        $text = 'Binkery Blog';
+    }
 	$content = Markdown::defaultTransform($text);
 	$description = mb_substr(strip_tags(excerpt($content)),0,250,'utf-8');
 	
@@ -155,6 +163,11 @@
 <body>
 	<div class="summary">
 		<h1><?=$SITE_NAME?></h1>
+        <?php
+            if($isLogin){
+                echo '<div id="edit_summary">编辑</div>';
+            }
+        ?>
 		<ul>
 		<?=$summary?>
 		</ul>
@@ -179,7 +192,7 @@
 			$endTime = microtime(true);
 			$times = round($endTime - $startTime,3);
 		?>
-		<footer>Copyright Binkery | 2011-2015 | <?=$times?> seconds</footer>
+		<footer>Copyright Binkery | 2011-2016 | <?=$times?> seconds</footer>
 		</div>
 		
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -201,7 +214,7 @@
 		$.post('/api.php',{
 			"method":"article",
 			"path": "<?=$file_path?>"
-		},function(data,stutus){
+		},function(data,status){
 			if(data.status == 200){
 				$("article").hide();
 				$("#editor").show();
@@ -209,20 +222,36 @@
 				
 				$("#edit").hide();
 				$("#save").show();
+                $("#save").attr("article_path","<?=$file_path?>");
 			}
 		},'json');
 		
 	});
 	$("#save").click(function(){
 		var text = $("#editor").val();
+        var file = $("#save").attr("article_path");
 		$.post('/api.php',{
 			"method":"save",
-			"path":"<?=$file_path?>",
+			"path":file,
 			"text":text
 		},function(data,status){
 			window.location.reload();
 		},"json");
 		
 	});
+    $("#edit_summary").click(function(){
+        $.post('/api.php',{"method":"article","path":"articles/SUMMARY.md"},function(data,status){
+              if(data.status == 200){
+                $("article").hide();
+                $("#editor").show();
+                $("#editor").val(data.text);
+
+                $("#edit").hide();
+                $("#save").show();
+                $("#save").attr("article_path","articles/SUMMARY.md");
+
+              }
+        },'json');
+    });
 </script>
 </html>

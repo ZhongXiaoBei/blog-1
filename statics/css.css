@@ -1,4 +1,4 @@
-*{padding:0;margin:0;border:0;font-size:16px;line-height:2;box-sizing: border-box;-webkit-tap-highlight-color: transparent;font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "å¾®è½¯é›…é»‘", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;}
+*{padding:0;margin:0;border:0;font-size:16px;line-height:2;box-sizing: border-box;-webkit-tap-highlight-color: transparent;font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "Ã¥Â¾Â®Ã¨Â½Â¯Ã©â€ºâ€¦Ã©Â»â€˜", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;}
 html{font-size:16px; color: #333; letter-spacing: .2px;}
 .clear{clear:both;}
 body{}
@@ -37,6 +37,7 @@ article ul,article ol{-webkit-margin-before: 1em;
   -webkit-padding-start: 40px;}
 article pre{background: #f7f7f7;padding:16px;overflow:auto;font-size:85%;border-radius:3px;margin-bottom:16px;}
 article blockquote{border-left:3px solid #66c2ff;padding:0 0 0 20px;}
-#edit,#save{position:fixed;top:0;margin:0px;padding:0px 10px;background:#66c2ff;color:#efefef;font-size:14px;}
+#edit,#save,#edit_summary{position:fixed;top:0;margin:0px;padding:0px 10px;background:#66c2ff;color:#efefef;font-size:14px;}
 #edit{right:0;}
 #save{left:300px;}
+#edit_summary{top:60px;left:10px;}
