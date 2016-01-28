@@ -1,4 +1,4 @@
-# 是否需要给每个　Activity　类提供　startActivity　方法
+# 是否需要给每个 Activity 类提供 startActivity 方法
 
 在项目中，经常能碰见有人新建了一个　Activity　类，然后为了方便别人调用，在这个类里增加了一个静态的　startActivity 之类的方法，参数列表里放了启动这个 Activity 需要的一些参数。
 

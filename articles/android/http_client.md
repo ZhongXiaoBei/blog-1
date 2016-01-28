@@ -2,12 +2,11 @@
 
 HttpClient 是由 APACHE 提供的一套 API ，Google 把它们都加入到了 Android 的 SDK 里了。这一套 API 做了很丰富的封装，在使用的过程中你就可以发现，这套 API 安装 Java 面向对象的思想，对 HTTP 请求中的各个环节都做了封装，比如 GET 请求有 HttpGet ，POST 请求是 HttpPost 。这样是很符合 Java 面向对象的特点，而且扩展性也很好。但是这套被 Google 加入 Android 豪华午餐的 API 并没有受到很好的支持，Android 也推荐使用 HttpURLConnection 而不是这套 API。
 
-<!--more-->
-
 下面简单介绍一下 HttpClient 的用法。
 
+## GET 请求
 
- ### GET 请求代码
+实例代码：
 
     String baseUrl = "http://tech.binkery.com/login.php?user=user&password=password"; 
     HttpGet httpGet = new HttpGet(baseUrl + "?" + param); 
@@ -20,8 +19,7 @@ HttpClient 是由 APACHE 提供的一套 API ，Google 把它们都加入到了 
         e.printStackTrace();  
     }  
 
-
- ### POST 请求代码
+## POST 请求
 
     List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>(); 
     params.add(new BasicNameValuePair("user", "user"));  
@@ -40,9 +38,7 @@ HttpClient 是由 APACHE 提供的一套 API ，Google 把它们都加入到了 
         e.printStackTrace();  
     }  
 
-
-
- ### 一些需要注意的知识点
+## 一些需要注意的知识点
 
  - GET 请求，参数可以直接拼接到 URL 的后面，但是如果参数的内容由用户输入的话，你可不能保证那个熊孩子会给你输入些啥玩意，空格啊，中文啊，火星文啊。所以如果需要更加健壮的代码，那就需要多费点功夫了。大概是这个样子：
 

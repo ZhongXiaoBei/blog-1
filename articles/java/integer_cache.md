@@ -1,4 +1,10 @@
-# Java 基础之 Integer 的缓存
+# Java 基础之 Integer
+
+int 是 Java 中的八大基本数据类型之一，对应的封装类是 java.lang.Integer。
+
+Java 的自动装箱和自动拆箱功能，让 int 和 Integer 可以互换。
+
+尽量使用 Integer.valueOf(int) 方法来获取一个 Integer 对象，而不使用 new Integer(int) 来构造 Integer 对象。
 
 Java 有两种数据类型，一种是基本数据类型，一种是引用类型。int 就是 Java 的一种基本数据类型，Integer 是 int 的封装类，位于 java.lang 包下。
 

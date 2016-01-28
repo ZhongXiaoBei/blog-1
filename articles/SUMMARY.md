@@ -2,13 +2,13 @@
 # [Android Coding Standards](android/coding_standards.md)
 
 # Android 四大组件
-## Activity
+## [Activity](android/activity.md)
+### [Activity 的启动模式](android/activity/launch_mode.md)
 ### [onSaveInstanceState()方法分析](android/activity/onsaveinstancestate_method.md)
-### [启动模式](android/activity/launch_mode.md)
-### [startActivityForResult](android/start_activity_for_result.md)
 ### [ActivityGroup](android/activity_group.md)
 ### [Android 基础之开机自动运行](android/start_application_when_boot_completed.md)
-### [是否需要给每个 Activity　类提供 startActivity　方法](android/start_activity_method_for_each_activity_class.md)
+### [startActivityForResult](android/start_activity_for_result.md)
+### [是否需要给每个 Activity 类提供 startActivity 方法](android/start_activity_method_for_each_activity_class.md)
 
 ## Service
 ### [IntentService](android/service/intent_service.md)
@@ -123,10 +123,10 @@
 ## [计算机安全](computer/computer_security/computer_security_encryption.md)
 ## [RESTful API](computer/restful_api.md)
 # 计算机网络
-## IP 协议
+## [IP 协议](computer/networks_ip.md)
 ## [HTTP 协议](computer/http.md)
 ## [TCP 协议](computer/networks_tcp.md)
-## UDP 协议
+## [UDP 协议](computer/networks_udp.md)
 ## DNS 服务
 ## DHCP 服务
 ## [mDNS](computer/mdns.md)

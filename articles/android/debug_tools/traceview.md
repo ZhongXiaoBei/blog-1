@@ -10,10 +10,13 @@ Traceview is a graphical viewer for execution logs that you create by using the 
 ## Traceview 界面
 
 Traceview 界面主要有两个部分
+
 * 时间线面板　Timeline panel
+
  describes when each thread and method started and stopped
 
 * 性能面板 Profile panel 
+
  provides a summary of what happened inside a method
 
 ## Timeline Panel
@@ -24,6 +27,7 @@ Traceview 界面主要有两个部分
 Profile Panel 的每一行显示一个方法的调用信息。点开每个方法名前的小三角后，显示　Parents 和　Children .　Parents 是这个方法的父方法，也就是调用这个方法的方法。Children 里是这个方法里调用的方法。这样可以一路追下去，找到计算量最大的方法。
 
 Profile Panel 的每一行有很多信息，每个信息都什么意思呢。下面是每列的说明。
+
 * Name 方法名字
 * Incl Cpu Time　该方法占用的 CPU 时间，包括它的子方法。
 * Excl Cpu Time　该方法占用的　CPU 时间，不包括它调用的子方法。
@@ -57,5 +61,6 @@ Traceview 在 SDK 的 tools 目录下，可以使用下面的方法打开文件�
 ## 已知问题
 在线程的处理上会碰见一些问题。
 Traceview logging does not handle threads well, resulting in these two problems:
+
 * If a thread exits during profiling, the thread name is not emitted;
 * The VM reuses thread IDs. If a thread stops and another starts, they may get the same ID.
