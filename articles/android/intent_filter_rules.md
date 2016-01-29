@@ -1,20 +1,104 @@
-# Android IntentFilter 匹配规则
+# Intent Filter 的理解
 
-每个 Android 的组件都需要给自己设定一个 IntentFilter 来向系统注册自己对什么样的 Intent 感兴趣。当一个组件发出一个 隐式Intent 的时候，系统需要为这个 Intent 找到接收者，于是就会在各个组件注册的 IntentFilter 里去查找。
+Intent 是 Android 组件相互沟通的信息载体。一个 Intent 由一个组件发出。如果这个 intent 是一个显示 Intent 的话，也就是这个 Intent 有明确的接收者，系统会把这个 Intent 交给这个指定的组件。如果这是一个隐式的 Intent ，没有指明确却的接收者，那么，系统就通过各个组件的注册信息来决定需要把 Intent 分发给哪些组件。
+
+四大组件都需要在 manifest 文件中注册，注册的时候可以选择性的添加 intent-fliter，也就是咱们现在要讨论的 Intent 过滤器。**NOTE**：四大组件中，Content Provider 注册的时候是没有 Intent Filter 的。
+
+下面是咱们最常见的一个过滤器，每个 Android 应用基本上都有这么一个。添加了这么一个 intent filter 的 Activity 被认为是这个应用的入口，并且启动器会在应用列表中列出这个应用。
+
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+
+
+每个组件都可以添加多个 Intent Filter 。
+
 在一个 IntentFilter 判断是否匹配某一个 Intent 的时候, 有三个条件必须符合： 动作（action），分类（category） , 数据（data）。如果特别指定的话，数据包括数据类型（data type）和数据（data scheme+authority+path）。IntentFilter.match(ContentResolver, Intent, boolean, String)有更多数据匹配的细节。
 
-<!--more-->
+## Intent Filter 的属性 
 
- - **Action** matches if any of the given values match the Intent action; if the filter specifies no actions, then it will only match Intents that do not contain an action.
+<intent-filter/\> 有三个属性。
 
- - **Data Type** matches if any of the given values match the Intent type. The Intent type is determined by calling resolveType(ContentResolver). A wildcard can be used for the MIME sub-type, in both the Intent and IntentFilter, so that the type "audio/*" will match "audio/mpeg", "audio/aiff", "audio/*", etc. Note that MIME type matching here is case sensitive, unlike formal RFC MIME types! You should thus always use lower case letters for your MIME types.
+* android:icon : 一个图标
+* android:label ： 一个文本
+* android:priority ： 优先级。取值从 -1000 到 100，可以影响到 Activity 和 Broadcast Receiver 。
 
- - **Data Scheme** matches if any of the given values match the Intent data's scheme. The Intent scheme is determined by calling getData() and getScheme() on that URI. Note that scheme matching here is case sensitive, unlike formal RFC schemes! You should thus always use lower case letters for your schemes.
+##  Action
+ 
+    <action android:name="com.xxx.xxx.XXX_XXX" />
 
- - **Data Scheme Specific Part** matches if any of the given values match the Intent's data scheme specific part and one of the data schemes in the filter has matched the Intent, or no scheme specific parts were supplied in the filter. The Intent scheme specific part is determined by calling getData() and getSchemeSpecificPart() on that URI. Note that scheme specific part matching is case sensitive.
+ * 一个 Intent Filter 中，可以定义多个 Action，但不能没有 Action。
+ * Intent 中定义了很多 action ，比如 android.intent.action.MAIN 等，更多参见：<http://blog.binkery.com/android/intent/standard_activity_actions.html>
+ * Action 可以是自定义的字符串，要确定字符串是唯一的。
 
- - **Data Authority** matches if any of the given values match the Intent's data authority and one of the data schemes in the filter has matched the Intent, or no authories were supplied in the filter. The Intent authority is determined by calling getData() and getAuthority() on that URI. Note that authority matching here is case sensitive, unlike formal RFC host names! You should thus always use lower case letters for your authority.
+## Data
 
- - **Data Path** matches if any of the given values match the Intent's data path and both a scheme and authority in the filter has matched against the Intent, or no paths were supplied in the filter. The Intent authority is determined by calling getData() and getPath() on that URI.
+语法：
 
- - **Categories** match if all of the categories in the Intent match categories given in the filter. Extra categories in the filter that are not in the Intent will not cause the match to fail. Note that unlike the action, an IntentFilter with no categories will only match an Intent that does not have any categories.
+     <data android:scheme="string"
+          android:host="string"
+          android:port="string"
+          android:path="string"
+          android:pathPattern="string"
+          android:pathPrefix="string"
+          android:mimeType="string" />
+
+一个 URI 的组成如下，<data/\> 的各个属性分别与 URI 对应。
+
+    <scheme>://<host>:<port>[<path>|<pathPrefix>|<pathPattern>]
+
+一个 <intent-filter/\> 可以包含多个 <data/\> 标签，把多个标签不同的属性组合到一个标签，效果是一样的。
+
+    <intent-filter . . . >
+        <data android:scheme="something" android:host="project.example.com" />
+        . . .
+    </intent-filter>
+    <intent-filter . . . >
+        <data android:scheme="something" />
+        <data android:host="project.example.com" />
+        . . .
+    </intent-filter>
+
+### android:scheme
+
+协议名，比如 http，ftp，content，file 等，以及很多时候，这个地方可以是自定义的。必须使用小写，不能使用 HTTP 这样的。
+
+If the filter has a data type set (the mimeType attribute) but no scheme, the content: and file: schemes are assumed.
+
+### android:host
+
+主机地址，也是需要全小写。
+
+### android:port
+
+端口号。这个属性不应该单独出现，需要同时有 scheme 和 host 属性。
+
+### android:path & android:pathPrefix & android:pathPattern
+
+路径匹配规则。
+* 如果定义了 android:path ，必须路径完全匹配。
+* 如果定义了 android:pathPrefix ，路径的前部分要匹配。
+* 如果定义了 android:pathPattern ，模糊匹配，可以通过 \* 号来模糊匹配。
+
+路径匹配规则也不能单独出现，需要有 scheme 和 host 属性。三个路径规则不能同时出现。
+
+### android:mimeType
+
+MIME media type，定义文件的类型，比如 image/jpeg，也可以使用 image/* 来表示所有图片格式的文件。也可以使用 */* 来表示所有文件。
+
+## category
+
+语法：
+
+    <category android:name="string" />
+
+属性：
+
+android:name
+
+分类的名字，标准的分类定义在 Intent 类中，以 CATEGORY\_name 名字开头的常量。
+
+为了接收到一个隐性的 Intent ，在 intent-filter 中必须包含 android.intent.category.LAUNCHER 这个分类。
+
+如果需要自定义分类，一般以包名作为前缀，以确保分类名字唯一。

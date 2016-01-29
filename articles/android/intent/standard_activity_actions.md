@@ -2,51 +2,48 @@
 
 这是目前定义在 android.content.Intent 里的标准的 Activity Action 。一般在启动 Activity 的时候会使用。
 
+##  ACTION\_MAIN 
+* android.intent.action.MAIN 
+* 以一个主入口启动，不期望接收到数据。
+* 输入：nothing
+* 输出：nothing
 
-<!--more-->
+## ACTION\_VIEW
+* android.intent.action.VIEW 
+* 显示数据给用户。
+* 输入：通过 getData() 可以获取到数据的 URI
+* 输出：nothing
 
- - **ACTION_MAIN** 
-    android.intent.action.MAIN 
-    以一个主入口启动，不期望接收到数据。
-    输入：nothing
-    输出：nothing
+## ACTION\_ATTACH\_DATA
+* android.intent.action.ATTACH_DATA 
+* 用来表明一些数据被附加到某些位置。
+* 输入：通过 getData() 可以获取到被添加的数据的 URI
+* 输出：nothing
 
- - **ACTION_VIEW** 
-    android.intent.action.VIEW 
-    显示数据给用户。
-    输入：通过 getData() 可以获取到数据的 URI
-    输出：nothing
+## ACTION_EDIT
+* android.intent.action.EDIT 
+* 为给定的数据提供可编辑的访问方式
+* 输入：通过 getData() 获取需要编辑的数据的 URI
+* 输出：nothing
 
- - **ACTION_ATTACH_DATA** 
-    android.intent.action.ATTACH_DATA 
-    用来表明一些数据被附加到某些位置。
-    输入：通过 getData() 可以获取到被添加的数据的 URI
-    输出：nothing
+## ACTION\_PICK
+* android.intent.action.PICK 
+* 从数据里选择一个项目，并且返回被选择的项
+* 输入：通过 getData() 获取数据的目录的 URI （vnd.android.cursor.dir/*）
+* 输出：被选中项的 URI
 
- - **ACTION_EDIT** 
-    android.intent.action.EDIT 
-    为给定的数据提供可编辑的访问方式
-    输入：通过 getData() 获取需要编辑的数据的 URI
-    输出：nothing
+## ACTION\_CHOOSER
+* android.intent.action.CHOOSER
 
- - **ACTION_PICK** 
-    android.intent.action.PICK 
-    从数据里选择一个项目，并且返回被选择的项
-    输入：通过 getData() 获取数据的目录的 URI （vnd.android.cursor.dir/*）
-    输出：被选中项的 URI
+## ACTION\_GET\_CONTENT 
+* android.intent.action.GET_CONTENT 
+* Allow the user to select a particular kind of data and return it. This is different than ACTION\_PICK in that here we just say what kind of data is desired, not a URI of existing data from which the user can pick. An ACTION\_GET\_CONTENT could allow the user to create the data as it runs (for example taking a picture or recording a sound), let them browse over the web and download the desired data, etc.
 
- - **ACTION_CHOOSER** 
-    android.intent.action.CHOOSER
-
- - **ACTION_GET_CONTENT** 
-    android.intent.action.GET_CONTENT 
-    Allow the user to select a particular kind of data and return it. This is different than ACTION_PICK in that here we just say what kind of data is desired, not a URI of existing data from which the user can pick. An ACTION_GET_CONTENT could allow the user to create the data as it runs (for example taking a picture or recording a sound), let them browse over the web and download the desired data, etc.
-
- - **ACTION_DIAL** 
-    android.intent.action.DIAL Dial 
-    拨打指定的号码。在 UI 上会显示将要拨打的号码，允许用户确定呼叫。
-    输入: 如果没有输入，则启动空白的拨号器界面。否则，通过 getData() 可以获取到电话号码的 URI ， 或者 tel:URI 。
-    输出: nothing.
+## ACTION_DIAL
+* android.intent.action.DIAL Dial 
+* 拨打指定的号码。在 UI 上会显示将要拨打的号码，允许用户确定呼叫。
+* 输入: 如果没有输入，则启动空白的拨号器界面。否则，通过 getData() 可以获取到电话号码的 URI ， 或者 tel:URI 。
+* 输出: nothing.
 
  - **ACTION_CALL** 
 android.intent.action.CALL  

@@ -2,11 +2,7 @@
 
 Content provider 是 Android 四大基本组件之一。官方给出的介绍如下：
 
-    Content providers manage access to a structured set of data. They encapsulate the data, and provide mechanisms for defining data security. Content providers are the standard interface that connects data in one process with code running in another process.
-
-
-<!--more-->
-
+> Content providers manage access to a structured set of data. They encapsulate the data, and provide mechanisms for defining data security. Content providers are the standard interface that connects data in one process with code running in another process.
 
 重点信息有这么几个：
 
