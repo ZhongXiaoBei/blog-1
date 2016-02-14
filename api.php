@@ -12,6 +12,28 @@ switch($method){
 	case 'save':
 		save();
 	break;
+    case 'read':
+        read();
+    break;
+}
+
+function read(){
+    $post = $_REQUEST['post'];
+    $text = @file_get_contents('cache/' . $post . '.cnt');
+    $value = 0;
+    if($text == FALSE){
+        $value = 1;
+    }else{
+        $value = intval($text);
+        $value = $value + 1;
+    }
+    @file_put_contents('cache/' . $post . '.cnt',''.$value);
+
+    $obj->status = 200;
+    $obj->cnt = $value;
+
+    echo json_encode($obj);
+
 }
 
 function save(){

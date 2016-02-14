@@ -192,7 +192,7 @@
 			$endTime = microtime(true);
 			$times = round($endTime - $startTime,3);
 		?>
-		<footer>Copyright Binkery | 2011-2016 | <?=$times?> seconds</footer>
+		<footer>Copyright Binkery | 2011-2016 | <?=$times?> seconds | 阅读次数：<span id="read_cnt"></span></footer>
 		</div>
 		
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -208,6 +208,16 @@
 					console.log("offset = " + offset);
 					$.cookie('position',offset,{ expires: 7, path: '/' });
 			});
+
+            $.post('/api.php',{
+                "method":"read",
+                "post":"<?=md5($file_path)?>"
+                },function(data,status){
+                    if(data.status == 200){
+                        $("#read_cnt").html(data.cnt);
+                    }
+            
+                },'json');
 	});
 	$("#save").hide();
 	$("#edit").click(function(){
