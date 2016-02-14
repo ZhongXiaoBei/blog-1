@@ -2,6 +2,8 @@
 
 Android 提供了两种设置 Activity 启动模式的方式。一种是在 manifest 文件中定义，一种是使用 Intent flags。
 
+有一篇文章，很推荐阅读：<http://inthecheesefactory.com/blog/understand-android-activity-launchmode/en>
+
 ## Using the manifest file
 
 > When you declare an activity in your manifest file ,you can specify how the activity should associate with tasks when it starts.

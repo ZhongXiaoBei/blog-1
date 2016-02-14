@@ -80,6 +80,7 @@
 ## [WebView 输入文本的时候，页面空白](android/special_devices_bugs/keyboard_hiding_edittext.md)
 ## [三星 4.3 系统数字选择器长按空指针](android/special_devices_bugs/npe_on_number_picker_form_long_press_on_samsung_devices.md)
 ## [contextImpl Failed to Ensure Directory](android/contextimpl_failed_to_ensure_directory.md)
+##[ActivityBarActivity 获取 actionbar 空指针](android/bugs_null_point_exception_actionbaractivity_with_no_title_theme.md)
 
 # Java
 ## [注解 Annotation](java/java_annotation.md)

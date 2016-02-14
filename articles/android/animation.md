@@ -1,5 +1,7 @@
 # Android 动画
 
+动画的主要作用是提高用户体验。
+
 一般来说，Android 有好几种动画，但是从官网上，Android 提供了两种动画系统（Animation Systems）。包括属性动画（Property Animation）和视图动画（View Animation）。帧动画（Drawable animation） 是一个附加的动画效果，可以运行你一帧一帧的渲染动画，比较简陋，称不上是一个动画系统。
 
 ## Property Animation

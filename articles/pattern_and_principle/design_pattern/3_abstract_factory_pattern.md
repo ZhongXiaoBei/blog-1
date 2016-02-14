@@ -11,6 +11,7 @@ Provide an interface for creating families of related or dependent objects witho
 
 ## 要素
 和工厂方法模式大致一样，抽象工厂模式由四个要素组成。
+
  - 抽象工厂（Abstract Factory）角色：担任这个角色的是工厂方法模式的核心，它是与应用系统商业逻辑无关的。
 
  - 具体工厂（Concrete Factory）角色：这个角色直接在客户端的调用下创建产品的实例。这个角色含有选择合适的产品对象的逻辑，而这个逻辑是与应用系统的商业逻辑紧密相关的。

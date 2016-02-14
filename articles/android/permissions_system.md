@@ -118,7 +118,9 @@ Arbitrarily fine-grained permissions can be enforced at any call into a service.
 
 这是一种被称为 per-URI permission ，可以理解为为单个资源进行的一次临时的授权。官网举的例子是，比如你是一个邮件应用，你需要通过一个图片查看器来打开某个邮件中的一个附件。很明显，因为这是邮件的附件，所以你把它设置为隐私的，所以图片查看器是不应该有权限访问的，但是你又期望图片查看器能打开这个图片怎么办？你可以在启动图片查看器的 Intent 上加上 Intent.FLAG\_GRANT\_READ\_URI\_PERMISSION and/or Intent.FLAG\_GRANT\_WRITE\_URI\_PERMISSION。这样，接受这个 intent 的 Activity 就获得了访问这个 URI 的许可，即使这个 Activity 所在的 App 没有获得相应的权限，这里的权限指的是 Provider 定义的权限，如果你的数据足够的隐私的话，你是不会对别人开放权限也不会告诉别人怎么获得权限的。当然，为了让这样的机制能够运作起来，需要和你自定义的 Content Provider 有一定的配合的。It is strongly recommended that content providers implement this facility, and declare that they support it through the android:grantUriPermissions attribute or <grant-uri-permissions\> tag.
 
+## 其他文章
 
+* <http://inthecheesefactory.com/blog/things-you-need-to-know-about-android-m-permission-developer-edition/en>
 
 
 
