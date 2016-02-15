@@ -137,6 +137,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="baidu-site-verification" content="qYHc0QExER" />
 	<link rel="stylesheet" href="http://<?=$WEB_SITE?>/statics/css.css">
 	<script type="text/javascript" src="http://<?=$WEB_SITE?>/statics/SyntaxHighlighter/shCore.js"></script>
 	<script type="text/javascript" src="http://<?=$WEB_SITE?>/statics/SyntaxHighlighter/shBrushJScript.js"></script>
