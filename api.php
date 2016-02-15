@@ -13,27 +13,31 @@ switch($method){
 		save();
 	break;
     case 'read':
-        read();
+        readCnt();
     break;
 }
 
-function read(){
+function readCnt(){
     $post = $_REQUEST['post'];
-    $text = @file_get_contents('cache/' . $post . '.cnt');
-    $value = 0;
+    $text = @file_get_contents('cache/cnt.cnt');
     if($text == FALSE){
-        $value = 1;
+        $array = array('total' => 1);
     }else{
-        $value = intval($text);
-        $value = $value + 1;
+        $array = json_decode($text,true);
     }
-    @file_put_contents('cache/' . $post . '.cnt',''.$value);
+    $value = $array[$post] + 1;
+    $total = $array['total'] + 1;
+    $array[$post] = $value;
+    $array['total'] = $total;
+
+    $text = json_encode($array);
+    @file_put_contents('cache/cnt.cnt',$text);
 
     $obj->status = 200;
     $obj->cnt = $value;
+    $obj->total = $total;
 
     echo json_encode($obj);
-
 }
 
 function save(){

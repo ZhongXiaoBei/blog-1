@@ -192,7 +192,7 @@
 			$endTime = microtime(true);
 			$times = round($endTime - $startTime,3);
 		?>
-		<footer>Copyright Binkery | 2011-2016 | <?=$times?> seconds | 阅读次数：<span id="read_cnt"></span></footer>
+		<footer>Copyright Binkery | 2011-2016 | <?=$times?> seconds | 阅读次数：<span id="read_cnt"></span> | Total : <span id="read_total_cnt"></span></footer>
 		</div>
 		
 	<script type="text/javascript">SyntaxHighlighter.all();</script>
@@ -211,10 +211,11 @@
 
             $.post('/api.php',{
                 "method":"read",
-                "post":"<?=md5($file_path)?>"
+                "post":"<?=$file_path?>"
                 },function(data,status){
                     if(data.status == 200){
                         $("#read_cnt").html(data.cnt);
+                        $("#read_total_cnt").html(data.total);
                     }
             
                 },'json');
